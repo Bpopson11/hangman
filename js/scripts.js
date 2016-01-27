@@ -33,10 +33,17 @@ HangMan.prototype.findMultiple = function() {
   for (var i = 0; i <= word.length; i++) {
      if (word.charAt(i) === "a") {
        letterArray.push(word.charAt(i));
-      //  letterArray.push(i);
-      //  letterString = letterArray.toString();
-      //  console.log(letterString);
      }
    }
-   console.log(letterArray);
+   return letterArray;
 }
+
+HangMan.prototype.convertLetter = function() {
+  var word = this.words[Math.floor(Math.random()*this.words.length)];
+  var blanks = []
+  word.split();
+    for (var i = 0; i < word.length; i++) {
+    blanks.push('_');
+    };
+  return blanks;
+};
