@@ -12,10 +12,12 @@ describe('HangMan', function(){
 
 describe('findLetter', function() {
   it("will identify a letter in an array", function() {
-    expect(findLetter(["c", "a", "t"])).to.eql(["a"]);
+    var testWord = new HangMan(["cat"], [], 10);
+    expect(testWord.findLetter()).to.eql('a');
   }); //look into using charAt() to return the actual character based on the array index
 
   it("will identify multiples of the same letter in an array", function(){
-    expect(findLetters(['c', 'a', 'n', 'a', 'l'])).to.eql(['a', 'a']);
+    var testWord = new HangMan(["canal"], [], 10);
+    expect(testWord.findMultiple()).to.eql(['a', 'a']);
   });
 });
