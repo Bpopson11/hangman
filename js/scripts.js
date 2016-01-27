@@ -1,5 +1,5 @@
 function HangMan(words, guessedLetters, score) {
-  this.words = ["cat"]; //previously had multiple words but kept screwing with our specs
+  this.words = ["canal"]; //previously had multiple words but kept screwing with our specs
   this.guessedLetters = [];
   this.score = 10;
 }
@@ -29,11 +29,14 @@ HangMan.prototype.findLetter = function() {
 HangMan.prototype.findMultiple = function() {
   var word = this.words[Math.floor(Math.random()*this.words.length)];
   var letterArray = [];
-    word.split();
-    for (var i = 0; i <= word.length; i++) {
-     if (word[i] === "a") {
-       letterArray.push(i);
+  // var letterString = ""
+  for (var i = 0; i <= word.length; i++) {
+     if (word.charAt(i) === "a") {
+       letterArray.push(word.charAt(i));
+      //  letterArray.push(i);
+      //  letterString = letterArray.toString();
+      //  console.log(letterString);
      }
-     return letterArray;
    }
+   console.log(letterArray);
 }
