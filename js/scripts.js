@@ -1,8 +1,11 @@
-function HangMan(words, guessedLetters, score) {
+function HangMan() {
   this.words = ["canal"]; //previously had multiple words but kept screwing with our specs
-  this.guessedLetters = [];
+  this.currentWord = this.chooseWord();
+  this.guessedLetters = []
   this.score = 10;
 }
+
+
 
 HangMan.prototype.chooseWord = function(){
   var word = this.words[Math.floor(Math.random()*this.words.length)];
@@ -11,27 +14,26 @@ HangMan.prototype.chooseWord = function(){
 
 
 HangMan.prototype.splitWord = function() {
-  var word = this.words[Math.floor(Math.random()*this.words.length)];
+  var word = this.currentWord;
   return word.split([]);
 }
 
-HangMan.prototype.findLetter = function() {
-  var word = this.words[Math.floor(Math.random()*this.words.length)];
+HangMan.prototype.findLetter = function(letter) {
+  var word = this.currentWord;
     word.split();
     for (var i = 0; i < word.length; i++) {
-     if (word[i] === "a") {
+     if (word[i] === letter) {
        return word.charAt(i);
-       console.log(word);
      }
    }
 }
 
-HangMan.prototype.findMultiple = function() {
-  var word = this.words[Math.floor(Math.random()*this.words.length)];
+HangMan.prototype.findMultiple = function(guessedLetter) {
+  var word = this.currentWord;
   var letterArray = [];
   // var letterString = ""
   for (var i = 0; i <= word.length; i++) {
-     if (word.charAt(i) === "a") {
+     if (word.charAt(i) === guessedLetter) {
        letterArray.push(word.charAt(i));
      }
    }
@@ -39,7 +41,7 @@ HangMan.prototype.findMultiple = function() {
 }
 
 HangMan.prototype.convertLetter = function() {
-  var word = this.words[Math.floor(Math.random()*this.words.length)];
+  var word = this.currentWord;
   var blanks = []
   word.split();
     for (var i = 0; i < word.length; i++) {
@@ -47,3 +49,15 @@ HangMan.prototype.convertLetter = function() {
     };
   return blanks;
 };
+
+HangMan.prototype.letterGuess = function(guessedLetter) {
+  var word = this.currentWord;
+  var blanks = []
+    for (var i = 0; i < word.length; i++) {
+      blanks.push('_');
+      if (word.charAt(i) === guessedLetter) {
+      blanks.splice(i, i, guessedLetter);
+    }
+  }
+  return blanks;
+}
