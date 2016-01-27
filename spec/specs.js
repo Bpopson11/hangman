@@ -8,3 +8,9 @@ describe('chooseWord', function(){
 
   });
 });
+
+describe('findLetter', function() {
+  it("will identify a letter in an array", function() {
+    expect(findLetter(["c", "a", "t"])).to.eql(["a"]);
+  });
+});
