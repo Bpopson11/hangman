@@ -4,7 +4,7 @@ describe('chooseWord', function(){
   });
 
   it("will choose a random word from an array and split it into individual letters", function() {
-    expect(chooseWord("cat")).to.eql(["c", "a", "t"]);
+    expect(splitWord("cat")).to.eql(["c", "a", "t"]);
 
   });
 });
