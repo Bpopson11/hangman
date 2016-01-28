@@ -1,3 +1,15 @@
 body {
   background-color: #dbdbf0;
 }
+
+.letters {
+  width: 40px;
+  margin-top: 15px;
+}
+
+.wordPlacement {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 30px;
+  text-align: center;
+}

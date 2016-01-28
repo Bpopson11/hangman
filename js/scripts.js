@@ -1,5 +1,5 @@
-function HangMan() {
-  this.words = ["canal"]; //previously had multiple words but kept screwing with our specs
+function HangMan(words, currentWord, guessedLetters, score) {
+  this.words = ["canal", "marshmallow", "fish"]; //previously had multiple words but kept screwing with our specs
   this.currentWord = this.chooseWord();
   this.guessedLetters = []
   this.score = 10;
@@ -79,7 +79,18 @@ HangMan.prototype.wrongAnswer = function(guessedLetter) {
 
 //jQuery begins here:
 $(document).ready(function() {
-  
+  $("input#generateWord").click(function(event) {
+    $("#wordHere").empty();
+    var words = this.words;
+    var currentWord = this.chooseWord;
+    var guessedLetters = this.guessedLetters;
+    var score = this.score;
+    var hangMan = new HangMan(words, currentWord, guessedLetters, score);
+    $("#wordHere").append(hangMan.convertLetter());
+  }); //end of generateWord function
+  $(".letters").click(function(event){
+    
+  }
 
 
 
@@ -88,7 +99,6 @@ $(document).ready(function() {
 
 
 
-
-
+  });
  event.preventDefault();
-} //end of doc ready brackets
+}); //end of doc ready brackets
