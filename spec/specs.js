@@ -25,12 +25,12 @@ describe('findLetter', function() {
 describe('revealLetter', function(){
   it("will convert letters into blanks", function() {
     var testWord = new HangMan();
-    expect(testWord.convertLetter()).to.eql(['_', '_', '_', '_', '_']);
+    expect(testWord.convertLetter()).to.eql(['_ ', '_ ', '_ ', '_ ', '_ ']);
   });
 
   it("will reveal a letter if guessed correctly", function(){
     var testWord = new HangMan();
-    expect(testWord.letterGuess("a")).to.eql(['_', 'a', '_', 'a', '_'])
+    expect(testWord.letterGuess("l")).to.eql(['_ ', '_ ', '_ ', '_ ', 'l'])
   });
 });
 

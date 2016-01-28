@@ -1,5 +1,5 @@
 function HangMan(words, currentWord, guessedLetters, score) {
-  this.words = ["canal", "marshmallow", "fish"]; //previously had multiple words but kept screwing with our specs
+  this.words = ["canal"]; //previously had multiple words but kept screwing with our specs
   this.currentWord = this.chooseWord();
   this.guessedLetters = []
   this.score = 10;
@@ -57,11 +57,14 @@ HangMan.prototype.convertLetter = function(word) {
 //adds correctly guessed letter in word in correct place.
 HangMan.prototype.letterGuess = function(guessedLetter) {
   var word = this.currentWord;
-  var blanks = []
+  var blanks = [];
+
     for (var i = 0; i < word.length; i++) {
+      blanks.push('_ ');
       if (word.charAt(i) === guessedLetter) {
-      blanks.splice(i, i, guessedLetter);
+      blanks.splice(i, 1, guessedLetter);
     }
+          console.log(blanks);
   }
     return blanks;
 }
@@ -87,7 +90,8 @@ $(document).ready(function() {
   $(".letters").click(function(event){
     var guessedLetter = ($(this).val());
     var newBlanks = hangMan.letterGuess(guessedLetter);
-    $("#wordHere").replaceWith(newBlanks);
+    console.log(newBlanks);
+    $("#wordHere").append(newBlanks);
     }); //end of generateWord function
      event.preventDefault();
   });
