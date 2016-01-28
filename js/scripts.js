@@ -1,5 +1,5 @@
 function HangMan() {
-  this.words = ["canal"]; //previously had multiple words but kept screwing with our specs
+  this.words = ["canal", "marshmallow", "fish"]; //previously had multiple words but kept screwing with our specs
   this.currentWord = this.chooseWord(); //canal
   this.wordBlanks = this.convertLetter(); // _ _ _ _ _
 
@@ -62,7 +62,7 @@ HangMan.prototype.letterGuess = function(guessedLetter) {
     for (var i = 0; i < word.length; i++) {
       //blanks.push('_ ');
       if (word.charAt(i) === guessedLetter) {
-      //blanks.splice(i, 1, guessedLetter);
+      // this.wordBlanks.splice(i, 1, guessedLetter); does the same as below, but more cumbersome
       this.wordBlanks[i] = guessedLetter;
     }
   }
