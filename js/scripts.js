@@ -6,18 +6,19 @@ function HangMan() {
 }
 
 
-
+//chooses a word at random from above array.
 HangMan.prototype.chooseWord = function(){
   var word = this.words[Math.floor(Math.random()*this.words.length)];
   return word;
 }
 
-
+//splits the random word chosen out into individual letters in an array.
 HangMan.prototype.splitWord = function() {
   var word = this.currentWord;
   return word.split([]);
 }
 
+//find a single guessed letter in word.
 HangMan.prototype.findLetter = function(letter) {
   var word = this.currentWord;
     word.split();
@@ -28,6 +29,7 @@ HangMan.prototype.findLetter = function(letter) {
    }
 }
 
+//will find multiple of the same letter in a word if needed.
 HangMan.prototype.findMultiple = function(guessedLetter) {
   var word = this.currentWord;
   var letterArray = [];
@@ -38,8 +40,10 @@ HangMan.prototype.findMultiple = function(guessedLetter) {
      }
    }
    return letterArray;
+   //needs to be down here outside the for statement
 }
 
+//takes selected word and convert the letters to blanks.
 HangMan.prototype.convertLetter = function() {
   var word = this.currentWord;
   var blanks = []
@@ -50,6 +54,7 @@ HangMan.prototype.convertLetter = function() {
   return blanks;
 };
 
+//adds correctly guessed letter in word in correct place.
 HangMan.prototype.letterGuess = function(guessedLetter) {
   var word = this.currentWord;
   var blanks = []
@@ -59,9 +64,10 @@ HangMan.prototype.letterGuess = function(guessedLetter) {
       blanks.splice(i, i, guessedLetter);
     }
   }
-        return blanks;
+    return blanks;
 }
 
+//detracts from score for wrong answer.
 HangMan.prototype.wrongAnswer = function(guessedLetter) {
   var word = this.currentWord;
     for (var i = 0; i < word.length; i++) {
