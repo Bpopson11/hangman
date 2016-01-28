@@ -1,6 +1,8 @@
 function HangMan() {
   this.words = ["canal"]; //previously had multiple words but kept screwing with our specs
-  this.currentWord = this.chooseWord();
+  this.currentWord = this.chooseWord(); //canal
+  this.wordBlanks = this.convertLetter(); // _ _ _ _ _
+
   this.score = 10;
 }
 
@@ -50,20 +52,21 @@ HangMan.prototype.convertLetter = function() {
     for (var i = 0; i < word.length; i++) {
     blanks.push('_ ');
     };
-  return blanks;
+  return this.wordBlanks = blanks;
 };
 
 //adds correctly guessed letter in word in correct place.
 HangMan.prototype.letterGuess = function(guessedLetter) {
   var word = this.currentWord;
-  var blanks = [];
+  //var blanks = [];
     for (var i = 0; i < word.length; i++) {
-      blanks.push('_ ');
+      //blanks.push('_ ');
       if (word.charAt(i) === guessedLetter) {
-      blanks.splice(i, 1, guessedLetter);
+      //blanks.splice(i, 1, guessedLetter);
+      this.wordBlanks[i] = guessedLetter;
     }
   }
-  return blanks;
+  //return blanks;
 };
 
 //detracts from score for wrong answer.
@@ -83,19 +86,21 @@ HangMan.prototype.wrongAnswer = function(guessedLetter) {
 //jQuery begins here:
 $(document).ready(function() {
   var hangMan = new HangMan();
-  var test = hangMan.convertLetter();
-  $("#wordHere").append(test);
+  // var test = hangMan.convertLetter();
+  $("#wordHere").append(hangMan.wordBlanks);
   $(".letters").click(function(event){
-    var guessedLetter = ($(this).val());
-    var blanks = [];
-    var newWord = hangMan.letterGuess(guessedLetter);
-    $("#wordHere").text(newWord);
+    var guessedLetter = $(this).val();
+    //var blanks = [];
+    hangMan.letterGuess(guessedLetter);
+    $("#wordHere").empty();
+    $("#wordHere").append(hangMan.wordBlanks);
+    //$("#wordHere").text(newWord);
 
   });
 
     //end of generateWord function
      event.preventDefault();
-    });
+});
  //end of doc ready brackets
 
  // $(document).ready(function() {
