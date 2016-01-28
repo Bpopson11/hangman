@@ -76,3 +76,19 @@ HangMan.prototype.wrongAnswer = function(guessedLetter) {
     }
       return this.score-1;
 }
+
+//jQuery begins here:
+$(document).ready(function() {
+  
+
+
+
+
+
+
+
+
+
+
+ event.preventDefault();
+} //end of doc ready brackets
