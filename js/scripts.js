@@ -1,7 +1,6 @@
-function HangMan(words, currentWord, guessedLetters, score) {
+function HangMan() {
   this.words = ["canal"]; //previously had multiple words but kept screwing with our specs
   this.currentWord = this.chooseWord();
-  this.guessedLetters = []
   this.score = 10;
 }
 
@@ -44,7 +43,7 @@ HangMan.prototype.findMultiple = function(guessedLetter) {
 }
 
 //takes selected word and convert the letters to blanks.
-HangMan.prototype.convertLetter = function(word) {
+HangMan.prototype.convertLetter = function() {
   var word = this.currentWord;
   var blanks = []
   word.split();
@@ -58,16 +57,14 @@ HangMan.prototype.convertLetter = function(word) {
 HangMan.prototype.letterGuess = function(guessedLetter) {
   var word = this.currentWord;
   var blanks = [];
-
     for (var i = 0; i < word.length; i++) {
       blanks.push('_ ');
       if (word.charAt(i) === guessedLetter) {
       blanks.splice(i, 1, guessedLetter);
     }
-          console.log(blanks);
   }
-    return blanks;
-}
+  return blanks;
+};
 
 //detracts from score for wrong answer.
 HangMan.prototype.wrongAnswer = function(guessedLetter) {
@@ -79,21 +76,31 @@ HangMan.prototype.wrongAnswer = function(guessedLetter) {
       return this.score-1;
 }
 
-var words = this.words;
-var currentWord = this.chooseWord;
-var guessedLetters = this.guessedLetters;
-var score = this.score;
-var hangMan = new HangMan(words, currentWord, guessedLetters, score);
+// var words = this.words;
+// var currentWord = this.chooseWord;
+// var score = this.score;
+
 //jQuery begins here:
 $(document).ready(function() {
-  $("#wordHere").append(hangMan.convertLetter());
+  var hangMan = new HangMan();
+  var test = hangMan.convertLetter();
+  $("#wordHere").append(test);
   $(".letters").click(function(event){
     var guessedLetter = ($(this).val());
-    var newBlanks = hangMan.letterGuess(guessedLetter);
-    console.log(newBlanks);
-    $("#wordHere").append(newBlanks);
-    }); //end of generateWord function
-     event.preventDefault();
+    var blanks = [];
+    var newWord = hangMan.letterGuess(guessedLetter);
+    $("#wordHere").text(newWord);
+
   });
 
+    //end of generateWord function
+     event.preventDefault();
+    });
  //end of doc ready brackets
+
+ // $(document).ready(function() {
+ //   $("#wordHere").append(test);
+ //   $(".letters").click(function(event){
+ //     var guessedLetter = ($(this).val());
+ //     var blanks = [];
+ //     HangMan.prototype.letterGuess(test);
