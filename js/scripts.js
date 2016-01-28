@@ -44,12 +44,12 @@ HangMan.prototype.findMultiple = function(guessedLetter) {
 }
 
 //takes selected word and convert the letters to blanks.
-HangMan.prototype.convertLetter = function() {
+HangMan.prototype.convertLetter = function(word) {
   var word = this.currentWord;
   var blanks = []
   word.split();
     for (var i = 0; i < word.length; i++) {
-    blanks.push('_');
+    blanks.push('_ ');
     };
   return blanks;
 };
@@ -59,7 +59,6 @@ HangMan.prototype.letterGuess = function(guessedLetter) {
   var word = this.currentWord;
   var blanks = []
     for (var i = 0; i < word.length; i++) {
-      blanks.push('_');
       if (word.charAt(i) === guessedLetter) {
       blanks.splice(i, i, guessedLetter);
     }
@@ -77,28 +76,20 @@ HangMan.prototype.wrongAnswer = function(guessedLetter) {
       return this.score-1;
 }
 
+var words = this.words;
+var currentWord = this.chooseWord;
+var guessedLetters = this.guessedLetters;
+var score = this.score;
+var hangMan = new HangMan(words, currentWord, guessedLetters, score);
 //jQuery begins here:
 $(document).ready(function() {
-  $("input#generateWord").click(function(event) {
-    $("#wordHere").empty();
-    var words = this.words;
-    var currentWord = this.chooseWord;
-    var guessedLetters = this.guessedLetters;
-    var score = this.score;
-    var hangMan = new HangMan(words, currentWord, guessedLetters, score);
-    $("#wordHere").append(hangMan.convertLetter());
-  }); //end of generateWord function
+  $("#wordHere").append(hangMan.convertLetter());
   $(".letters").click(function(event){
-    
-  }
-
-
-
-
-
-
-
-
+    var guessedLetter = ($(this).val());
+    var newBlanks = hangMan.letterGuess(guessedLetter);
+    $("#wordHere").replaceWith(newBlanks);
+    }); //end of generateWord function
+     event.preventDefault();
   });
- event.preventDefault();
-}); //end of doc ready brackets
+
+ //end of doc ready brackets
