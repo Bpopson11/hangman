@@ -32,5 +32,11 @@ describe('revealLetter', function(){
     var testWord = new HangMan();
     expect(testWord.letterGuess("a")).to.eql(['_', 'a', '_', 'a', '_'])
   });
+});
 
+describe('penalty', function(){
+    it("will decrease overall score per each wrong answer", function(){
+    var testWord = new HangMan();
+    expect(testWord.wrongAnswer(10)).to.eql(9)
+  });
 });

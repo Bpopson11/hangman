@@ -59,5 +59,14 @@ HangMan.prototype.letterGuess = function(guessedLetter) {
       blanks.splice(i, i, guessedLetter);
     }
   }
-  return blanks;
+        return blanks;
+}
+
+HangMan.prototype.wrongAnswer = function(guessedLetter) {
+  var word = this.currentWord;
+    for (var i = 0; i < word.length; i++) {
+      if (word.charAt(i) !== guessedLetter) {
+      }
+    }
+      return this.score-1;
 }
