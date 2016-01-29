@@ -1,16 +1,15 @@
 function HangMan() {
-  this.words = ["canal", "marshmallow", "fish"]; //previously had multiple words but kept screwing with our specs
+  this.words = ["canal"]; //previously had multiple words but kept screwing with our specs
   this.currentWord = this.chooseWord(); //canal
   this.wordBlanks = this.convertLetter(); // _ _ _ _ _
-
   this.score = 10;
 }
 
+// , "marshmallow", "fish", "school", "chocolate", "lemur", "computer", "sarcasm", "manatee", "carbonation", "gold", "awesome"
 
 //chooses a word at random from above array.
 HangMan.prototype.chooseWord = function(){
-  var word = this.words[Math.floor(Math.random()*this.words.length)];
-  return word;
+  return this.word = this.words[Math.floor(Math.random()*this.words.length)];
 }
 
 //splits the random word chosen out into individual letters in an array.
@@ -58,27 +57,18 @@ HangMan.prototype.convertLetter = function() {
 //adds correctly guessed letter in word in correct place.
 HangMan.prototype.letterGuess = function(guessedLetter) {
   var word = this.currentWord;
-  //var blanks = [];
     for (var i = 0; i < word.length; i++) {
-      //blanks.push('_ ');
       if (word.charAt(i) === guessedLetter) {
       // this.wordBlanks.splice(i, 1, guessedLetter); does the same as below, but more cumbersome
       this.wordBlanks[i] = guessedLetter;
+      } else if (word.charAt(i) !== guessedLetter && i === word.length -1) {
+       this.score -= 1;
+      }
     }
-  }
   //return blanks;
 };
 
-//detracts from score for wrong answer.
-HangMan.prototype.wrongAnswer = function(guessedLetter) {
-  var word = this.currentWord;
-    for (var i = 0; i < word.length; i++) {
-      if (word.charAt(i) !== guessedLetter) {
-      }
-    }
-      return this.score-1;
-}
-
+//NEVER PUT GLOBAL VARIABLES FOR ENTIRE JS = MUST BE WITHIN DOC
 // var words = this.words;
 // var currentWord = this.chooseWord;
 // var score = this.score;
@@ -86,7 +76,6 @@ HangMan.prototype.wrongAnswer = function(guessedLetter) {
 //jQuery begins here:
 $(document).ready(function() {
   var hangMan = new HangMan();
-  // var test = hangMan.convertLetter();
   $("#wordHere").append(hangMan.wordBlanks);
   $(".letters").click(function(event){
     var guessedLetter = $(this).val();
@@ -94,7 +83,8 @@ $(document).ready(function() {
     hangMan.letterGuess(guessedLetter);
     $("#wordHere").empty();
     $("#wordHere").append(hangMan.wordBlanks);
-    //$("#wordHere").text(newWord);
+    //hangMan.wrongAnswer(guessedLetter);
+    $("#scoreKeeper").append(hangMan.score);
 
   });
 
@@ -102,10 +92,3 @@ $(document).ready(function() {
      event.preventDefault();
 });
  //end of doc ready brackets
-
- // $(document).ready(function() {
- //   $("#wordHere").append(test);
- //   $(".letters").click(function(event){
- //     var guessedLetter = ($(this).val());
- //     var blanks = [];
- //     HangMan.prototype.letterGuess(test);
