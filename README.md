@@ -1,4 +1,4 @@
-_{Hangman}_
+# _Hangman_
 
 #### _This is an app that allows the user to play Hangman_
 
@@ -6,7 +6,7 @@ _{Hangman}_
 
 ## Description
 
-_This app allows a user to play hangman by selecting letter buttons for guesses. At the moment score keeping and visual representation of the hangman is not available. _
+_This app allows a user to play hangman by selecting letter buttons for guesses. At the moment score keeping and visual representation of the hangman is not available._
 
 ## Setup/Installation Requirements
 
@@ -17,7 +17,7 @@ _This app allows a user to play hangman by selecting letter buttons for guesses.
 
 ## Known Bugs
 
-_The scorekeeping functionality does not work at this time. The score will fluccuate regardless of letter guess._
+_The scorekeeping functionality does not work at this time. The score will fluctuate regardless of letter guess._
 
 ## Technologies Used
 
